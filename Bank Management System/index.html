@@ -1,0 +1,165 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bank Management System</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <h2>🏦 SecureBank</h2>
+    <span>Frontend Demo</span>
+  </header>
+
+  <div class="layout">
+    <aside class="sidebar">
+      <h3>Menu</h3>
+      <a href="#dashboard">Dashboard</a>
+      <a href="#customers">Customers</a>
+      <a href="#transactions">Transactions</a>
+    </aside>
+
+    <main>
+      <section id="dashboard">
+        <h1>Bank Dashboard</h1>
+        <p class="muted">Manage demo customers and account balances.</p>
+
+        <div class="stats">
+          <div class="stat">
+            <span>Total Customers</span>
+            <h2 id="totalCustomers">0</h2>
+          </div>
+          <div class="stat">
+            <span>Total Balance</span>
+            <h2 id="totalBalance">₹0.00</h2>
+          </div>
+          <div class="stat">
+            <span>Transactions</span>
+            <h2 id="totalTransactions">0</h2>
+          </div>
+        </div>
+      </section>
+
+      <section id="customers" class="panel">
+        <h2 id="formTitle">Add Customer</h2>
+
+        <form id="customerForm">
+          <input type="hidden" id="customerId">
+
+          <div class="form-grid">
+            <label>
+              Full Name
+              <input id="name" type="text" placeholder="Enter full name"
+                     maxlength="80" required>
+            </label>
+
+            <label>
+              Email
+              <input id="email" type="email" placeholder="example@email.com"
+                     maxlength="120" required>
+            </label>
+
+            <label>
+              Phone
+              <input id="phone" type="tel" placeholder="Phone number"
+                     maxlength="20" required>
+            </label>
+
+            <label>
+              Initial Deposit (₹)
+              <input id="balance" type="number" min="0" max="100000000"
+                     step="0.01" value="0" required>
+            </label>
+          </div>
+
+          <button type="submit" id="saveBtn">Add Customer</button>
+          <button type="button" id="cancelBtn" class="secondary hidden">
+            Cancel Edit
+          </button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <div class="table-heading">
+          <h2>Customer Records</h2>
+          <input id="search" type="search"
+                 placeholder="Search customers...">
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Account No.</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Balance</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="customerTable"></tbody>
+          </table>
+        </div>
+        <p id="emptyMessage" class="muted">No customers found.</p>
+      </section>
+
+      <section id="transactions" class="panel">
+        <h2>Deposit / Withdraw</h2>
+
+        <form id="transactionForm">
+          <label>
+            Customer Account
+            <select id="accountSelect" required>
+              <option value="">Select a customer</option>
+            </select>
+          </label>
+
+          <div class="form-grid">
+            <label>
+              Transaction Type
+              <select id="transactionType">
+                <option value="deposit">Deposit</option>
+                <option value="withdraw">Withdraw</option>
+              </select>
+            </label>
+
+            <label>
+              Amount (₹)
+              <input id="amount" type="number" min="0.01"
+                     max="100000000" step="0.01" required>
+            </label>
+          </div>
+
+          <button type="submit">Process Transaction</button>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Transaction History</h2>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Account</th>
+                <th>Type</th>
+                <th>Amount</th>
+              </tr>
+            </thead>
+            <tbody id="transactionTable"></tbody>
+          </table>
+        </div>
+        <p id="transactionEmpty" class="muted">No transactions yet.</p>
+      </section>
+
+      <footer>
+        Educational demo only. Not connected to a real bank.
+      </footer>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
